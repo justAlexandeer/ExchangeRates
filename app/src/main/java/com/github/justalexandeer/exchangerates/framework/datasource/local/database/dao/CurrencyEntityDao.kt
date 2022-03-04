@@ -1,4 +1,4 @@
-package com.github.justalexandeer.exchangerates.framework.datasource.local.database.mapper
+package com.github.justalexandeer.exchangerates.framework.datasource.local.database.dao
 
 import androidx.room.*
 import com.github.justalexandeer.exchangerates.framework.datasource.local.database.entity.CurrencyEntity
@@ -12,7 +12,7 @@ interface CurrencyEntityDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveCurrencyEntity(currencyEntity: CurrencyEntity)
 
-    @Delete
-    fun removeCurrencyEntity(currencyEntity: CurrencyEntity)
+    @Query("DELETE FROM currency_entity WHERE name = :currencyName")
+    fun removeCurrencyEntity(currencyName: String)
 
 }

@@ -3,7 +3,7 @@ package com.github.justalexandeer.exchangerates.framework.datasource.local.datab
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.github.justalexandeer.exchangerates.framework.datasource.local.database.entity.CurrencyEntity
-import com.github.justalexandeer.exchangerates.framework.datasource.local.database.mapper.CurrencyEntityDao
+import com.github.justalexandeer.exchangerates.framework.datasource.local.database.dao.CurrencyEntityDao
 
 @Database(
     entities = [CurrencyEntity::class],

@@ -17,6 +17,6 @@ interface ApiCurrency {
     @GET("fetch-multi")
     suspend fun getMultiCurrenciesValueFromBase(
         @Query("from") baseCurrencies: String,
-        @Query("to") multiCurrency: List<String>
+        @Query("to") multiCurrency: String
     ): CurrencyValueResponse
 }

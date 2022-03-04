@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.github.justalexandeer.exchangerates.framework.datasource.local.database.AppDatabase
 import com.github.justalexandeer.exchangerates.framework.datasource.local.database.DATABASE_NAME
-import com.github.justalexandeer.exchangerates.framework.datasource.local.database.mapper.CurrencyEntityDao
+import com.github.justalexandeer.exchangerates.framework.datasource.local.database.dao.CurrencyEntityDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
