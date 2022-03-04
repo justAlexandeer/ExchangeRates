@@ -11,7 +11,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetCurrencyFullNameUseCase @Inject constructor(
+class GetCurrenciesFullNameUseCase @Inject constructor(
     private val currencyFullNameRepository: CurrencyFullNameRepository,
     private val dispatcherIO: CoroutineDispatcher
 ) {

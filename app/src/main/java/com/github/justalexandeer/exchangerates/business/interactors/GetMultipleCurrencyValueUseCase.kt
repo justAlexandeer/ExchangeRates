@@ -4,6 +4,7 @@ import com.github.justalexandeer.exchangerates.business.data.local.abstraction.C
 import com.github.justalexandeer.exchangerates.business.data.local.safeCacheCall
 import com.github.justalexandeer.exchangerates.business.data.remote.abstraction.CurrencyValueRepository
 import com.github.justalexandeer.exchangerates.business.data.remote.safeApiCall
+import com.github.justalexandeer.exchangerates.business.domain.model.Currency
 import com.github.justalexandeer.exchangerates.business.domain.model.CurrencyValue
 import com.github.justalexandeer.exchangerates.business.domain.state.DataState
 import com.github.justalexandeer.exchangerates.business.domain.state.DataStateErrorType
@@ -19,7 +20,7 @@ class GetMultipleCurrencyValueUseCase @Inject constructor(
     private val currencyRepository: CurrencyRepository,
     private val dispatcherIO: CoroutineDispatcher
 ) {
-    suspend operator fun invoke(base: String): DataState<List<CurrencyValue>?> =
+    suspend operator fun invoke(baseCurrency: Currency): DataState<List<CurrencyValue>?> =
         withContext(dispatcherIO) {
             val localDataState = safeCacheCall(dispatcherIO) {
                 currencyRepository.getAllFavoritesCurrency()
@@ -41,7 +42,7 @@ class GetMultipleCurrencyValueUseCase @Inject constructor(
                     )
                 } else {
                     val remoteDataState: DataState<List<CurrencyValue>?> = safeApiCall(dispatcherIO) {
-                        currencyValueRepository.getMultiCurrenciesValue(base, localDataState.data)
+                        currencyValueRepository.getMultiCurrenciesValue(baseCurrency.name, localDataState.data)
                     }
                     return@withContext remoteDataState
                 }
