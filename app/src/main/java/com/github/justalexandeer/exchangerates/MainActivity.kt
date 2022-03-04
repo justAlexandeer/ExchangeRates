@@ -17,6 +17,7 @@ import com.github.justalexandeer.exchangerates.framework.datasource.local.databa
 import com.github.justalexandeer.exchangerates.framework.datasource.remote.ApiCurrency
 import com.github.justalexandeer.exchangerates.framework.datasource.remote.implementation.CurrencyFullNameRepositoryImpl
 import com.github.justalexandeer.exchangerates.framework.datasource.remote.implementation.CurrencyValueRepositoryImpl
+import com.github.justalexandeer.exchangerates.ui.ExchangeRatesUI
 import com.github.justalexandeer.exchangerates.ui.theme.ExchangeRatesTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -27,15 +28,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var currencyValueRepositoryImpl: CurrencyValueRepositoryImpl
-
-    @Inject
-    lateinit var currencyFullNameRepositoryImpl: CurrencyFullNameRepositoryImpl
-
-    @Inject
-    lateinit var currencyRepositoryImpl: CurrencyRepositoryImpl
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -45,12 +37,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting(
-                        "Android",
-                        currencyValueRepositoryImpl,
-                        currencyFullNameRepositoryImpl,
-                        currencyRepositoryImpl
-                    )
+                    ExchangeRatesUI()
                 }
             }
         }
@@ -59,32 +46,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(
-    name: String,
-    currencyValueRepositoryImpl: CurrencyValueRepositoryImpl,
-    currencyFullNameRepositoryImpl: CurrencyFullNameRepositoryImpl,
-    currencyRepositoryImpl: CurrencyRepositoryImpl
+    name: String
 ) {
-    val scope = rememberCoroutineScope()
-    Button(onClick = {
-        scope.launch {
-            withContext(Dispatchers.IO) {
-                val listOfCurrency = mutableListOf(
-                    Currency("USD"),
-                    Currency("EUR"),
-                    Currency("ETB"),
-                    Currency("GHS")
-                )
-                currencyRepositoryImpl.saveCurrencyToFavorites(listOfCurrency[1])
-                currencyRepositoryImpl.saveCurrencyToFavorites(listOfCurrency[2])
-                currencyRepositoryImpl.saveCurrencyToFavorites(listOfCurrency[3])
-                var test1 = currencyRepositoryImpl.getAllFavoritesCurrency()
-                Log.i("TAG", "Greeting: $test1")
-                currencyRepositoryImpl.removeCurrencyFromFavorites(listOfCurrency[2])
-                test1 = currencyRepositoryImpl.getAllFavoritesCurrency()
-                Log.i("TAG", "Greeting: $test1")
-            }
-        }
-    }) {
-        Text(text = "Hello $name!")
-    }
+    Text(text = "Hello $name!")
 }
