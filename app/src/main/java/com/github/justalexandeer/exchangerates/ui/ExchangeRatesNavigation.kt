@@ -6,20 +6,14 @@ import androidx.navigation.NavHostController
 
 
 class ExchangeRatesNavigation(navHostController: NavHostController) {
-    val navigateToFavoritesScreen: () -> Unit = {
-        navHostController.navigate(ExchangeRatesDestinations.FAVORITES_ROUTE) {
-            popUpTo(navHostController.graph.findStartDestination().id) {
-                saveState = false
-            }
+    val navigateToPopularScreen: () -> Unit = {
+        navHostController.navigate(ExchangeRatesDestinations.POPULAR_ROUTE) {
             launchSingleTop = true
             restoreState = true
         }
     }
-    val navigateToPopularScreen: () -> Unit = {
-        navHostController.navigate(ExchangeRatesDestinations.POPULAR_ROUTE) {
-            popUpTo(ExchangeRatesDestinations.POPULAR_ROUTE) {
-                saveState = false
-            }
+    val navigateToFavoritesScreen: () -> Unit = {
+        navHostController.navigate(ExchangeRatesDestinations.FAVORITES_ROUTE) {
             launchSingleTop = true
             restoreState = true
         }

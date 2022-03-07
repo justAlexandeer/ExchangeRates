@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">ExchangeRates</string>
+    <string name="dismiss_button">DISMISS</string>
+    <string name="retry_button">RETRY</string>
+    <string name="navigation_item_bottom_popular">popular</string>
+    <string name="navigation_item_bottom_favorite">favorite</string>
+    <string name="choose_currency_screen_title">Choose base currency</string>
+    <string name="currency_screen_button_sort">Sort</string>
+    <string name="currency_screen_base_currency">Base currency:\ </string>
+    <string name="currency_screen_sort_by">Sort by:\ </string>
+    <string name="sort_screen_sort_title">Sort</string>
+    <string name="sort_screen_sort_alphabetical_title">Sort by alphabetical:</string>
+    <string name="sort_screen_sort_value_title">Sort by value:</string>
+    <string name="sort_screen_sort_alphabetical_type_asc">alphabetical asc</string>
+    <string name="sort_screen_sort_value_type_asc">value asc</string>
+    <string name="sort_screen_sort_alphabetical_type_desc">alphabetical desc</string>
+    <string name="sort_screen_sort_value_type_desc">value desc</string>
 </resources>
